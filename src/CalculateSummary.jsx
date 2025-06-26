@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function CalculateSummary(props) {
-  const income=20000;
+  const income=50000;
   const totalExpense= props.expenses.reduce((acc, expense)=>acc+expense.amount, 0);
   return (
     <>
