@@ -10,19 +10,19 @@ function App() {
   const [expenses, setExpenses]= useState([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/expenses/").then((res)=> setExpenses(res.data)).catch((err)=>console.error("Fetch error: ", err));
+    axios.get("https://expense-tracker-backend-jiej.onrender.com/api/expenses/").then((res)=> setExpenses(res.data)).catch((err)=>console.error("Fetch error: ", err));
   },[])
 
   function editExpense(id, newName, newAmount){
-  axios.put(`http://localhost:3000/api/expenses/${id}`, { title: newName, amount: Math.abs(Number(newAmount)) })
-    .then(() => axios.get("http://localhost:3000/api/expenses/")
+  axios.put(`https://expense-tracker-backend-jiej.onrender.com/api/expenses/${id}`, { title: newName, amount: Math.abs(Number(newAmount)) })
+    .then(() => axios.get("https://expense-tracker-backend-jiej.onrender.com/api/expenses/")
       .then((res) => setExpenses(res.data))
       .catch((err) => console.error("Fetch error: ", err)))
     .catch((err) => console.log("Edit Error: ", err));
 }
 
   function deleteExpense(id){
-    axios.delete(`http://localhost:3000/api/expenses/${id}`)
+    axios.delete(`https://expense-tracker-backend-jiej.onrender.com/api/expenses/${id}`)
       .then(() => setExpenses(expenses.filter((expense) => expense._id !== id)))
       .catch((err) => console.log("Delete Err:", err));
   }
@@ -35,11 +35,11 @@ function App() {
     title: name,
     amount: finalAmount
   };
-  axios.post("http://localhost:3000/api/expenses/", temp)
+  axios.post("https://expense-tracker-backend-jiej.onrender.com/api/expenses/", temp)
     .then(() => {
       setAmount('');
       setName('');
-      axios.get("http://localhost:3000/api/expenses/")
+      axios.get("https://expense-tracker-backend-jiej.onrender.com/api/expenses/")
         .then((res) => setExpenses(res.data))
         .catch((err) => console.error("Fetch error: ", err));
     })
